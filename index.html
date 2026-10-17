@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe6ef">
+  <meta name="description" content="Una pequeña historia hecha con cariño por Angel para Zizi.">
+  <title>Para Zizi ♡ — De Angel</title>
+
+  <style>
+    :root {
+      --rosa: #e88baa;
+      --rosa-claro: #ffe7ef;
+      --rosa-suave: #fff5f8;
+      --vino: #87465f;
+      --texto: #785365;
+      --blanco: #fffdfd;
+      --sombra: 0 12px 40px #a95c7b20;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 20px;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      color: var(--texto);
+      background:
+        radial-gradient(ellipse at top left, #fffafd, transparent 55%),
+        linear-gradient(145deg, #ffe5ef, #f9eaff 55%, #fff0f3);
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .seccion {
+      min-height: 100svh;
+      padding: 75px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    .etiqueta {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: .73rem;
+      color: #b66b8b;
+    }
+
+    h1, h2 {
+      color: var(--vino);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: normal;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 9vw, 5rem);
+      line-height: 1.1;
+      margin: 18px 0;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .subtitulo {
+      max-width: 480px;
+      margin: 10px auto 24px;
+    }
+
+    .boton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 13px 23px;
+      margin: 7px;
+      border: 1px solid transparent;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #ed9bb7, #d77fa2);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 20px #d77fa233;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .boton:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px #d77fa244;
+    }
+
+    .boton:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #a84e76;
+      outline-offset: 4px;
+    }
+
+    .boton.secundario {
+      background: #fffafc;
+      color: var(--vino);
+      border-color: #f1c4d5;
+      box-shadow: none;
+    }
+
+    .flor {
+      font-size: clamp(3rem, 10vw, 5rem);
+      animation: flotar 3s ease-in-out infinite;
+      filter: drop-shadow(0 8px 12px #d77fa222);
+    }
+
+    .carta {
+      width: min(100%, 650px);
+      padding: clamp(23px, 6vw, 48px);
+      border: 1px solid #f8d8e4;
+      border-radius: 28px;
+      background: #ffffffc9;
+      box-shadow: var(--sombra);
+      backdrop-filter: blur(8px);
+    }
+
+    .carta p {
+      text-align: left;
+    }
+
+    .firma {
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #bc6488;
+      font-size: 1.5rem;
+      text-align: right !important;
+      margin-top: 30px;
+    }
+
+    .decoracion {
+      position: absolute;
+      pointer-events: none;
+      opacity: .65;
+      font-size: 1.4rem;
+    }
+
+    .d1 { top: 12%; left: 8%; }
+    .d2 { top: 25%; right: 8%; }
+    .d3 { bottom: 13%; left: 12%; }
+    .d4 { bottom: 20%; right: 10%; }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+      width: min(100%, 760px);
+      margin: 25px auto;
+    }
+
+    .recuerdo {
+      padding: 11px;
+      border-radius: 15px;
+      background: #fffdfd;
+      box-shadow: var(--sombra);
+      transform: rotate(-1deg);
+      min-width: 0;
+    }
+
+    .recuerdo:nth-child(even) {
+      transform: rotate(1deg);
+    }
+
+    .recuerdo img,
+    .recuerdo video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 9px;
+      background: #f9e4ed;
+    }
+
+    .recuerdo video {
+      aspect-ratio: 4 / 5;
+    }
+
+    .recuerdo .pie {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: .95rem;
+      line-height: 1.5;
+      margin: 13px 5px 7px;
+    }
+
+    .nota {
+      width: min(100%, 620px);
+      padding: 22px;
+      border-radius: 20px;
+      background: #fff9fcad;
+      margin: 18px 0;
+    }
+
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 18px;
+    }
+
+    .respuesta {
+      min-height: 55px;
+      margin-top: 20px;
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      color: var(--vino);
+      line-height: 1.7;
+    }
+
+    .musica {
+      position: fixed;
+      z-index: 20;
+      top: 14px;
+      right: 14px;
+      border: 1px solid #f3cada;
+      border-radius: 30px;
+      padding: 11px 14px;
+      color: var(--vino);
+      background: #fffafceF;
+      box-shadow: 0 5px 18px #8f52651a;
+      cursor: pointer;
+    }
+
+    .corazon-flotante {
+      position: fixed;
+      z-index: 10;
+      bottom: -35px;
+      pointer-events: none;
+      animation: subir 6s linear forwards;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 18px;
+      font-size: .85rem;
+      line-height: 1.8;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-10px) rotate(3deg); }
+    }
+
+    @keyframes subir {
+      to {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .seccion {
+        padding: 70px 16px;
+      }
+
+      .galeria {
+        gap: 10px;
+      }
+
+      .recuerdo {
+        padding: 7px;
+      }
+
+      .recuerdo .pie {
+        font-size: .85rem;
+      }
+
+      .boton {
+        max-width: 100%;
+        padding: 12px 17px;
+      }
+
+      .musica {
+        top: 9px;
+        right: 9px;
+        font-size: .8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    
+/* Lluvia de florecitas románticas */
+.flor {
+  position: fixed;
+  top: -30px;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  animation: caerFlor linear forwards;
+  opacity: 0.9;
+}
+
+@keyframes caerFlor {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Música: agrega tu archivo musica.mp3 a la carpeta -->
+  <audio id="musica" loop preload="none">
+    <source src="musica.mpeg" type="audio/mpeg">
+  </audio>
+
+  <button class="musica" id="botonMusica"
+          type="button" onclick="alternarMusica()"
+          aria-pressed="false">
+    ♫ Activar música
+  </button>
+
+  <!-- 1. PORTADA -->
+  <section class="seccion" id="inicio">
+    <span class="decoracion d1">✿</span>
+    <span class="decoracion d2">♡</span>
+    <span class="decoracion d3">✧</span>
+    <span class="decoracion d4">🌷</span>
+
+    <div class="flor">🌸</div>
+    <p class="etiqueta">Una pequeña historia, hecha con cariño</p>
+
+    <h1>Para ti,<br>Zizi ♡</h1>
+
+    <p class="subtitulo">
+      Hay personas que llegan sin avisar y,
+      sin darse cuenta, empiezan a ocupar
+      un lugar muy bonito en nuestro corazón.
+    </p>
+
+    <p>Esta vez, quiero contarte algo...</p>
+
+    <button class="boton" onclick="irA('carta')">
+      Abrir mi corazón 💌
+    </button>
+
+    <p style="font-size:.8rem; opacity:.75">
+      Con cariño, Angel ♡
+    </p>
+  </section>
+
+  <!-- 2. LA CARTA -->
+  <section class="seccion oculto" id="carta">
+    <div class="carta">
+      <p class="etiqueta">Para alguien muy especial</p>
+      <h2>Querida Zizi... 💗</h2>
+
+      <p>
+        No sé si existen las casualidades o si algunas personas
+        simplemente tienen que encontrarse en el momento menos
+        esperado. Pero, de algo sí estoy seguro:
+        me alegra muchísimo haberte conocido.
+      </p>
+
+      <p>
+        Hace apenas unas semanas que llegaste a mi vida,
+        y nunca imaginé que en tan poquito tiempo podrías
+        convertirte en alguien tan importante para mí.
+      </p>
+
+      <p>
+        A veces, lo más bonito no empieza con grandes promesas,
+        sino con una conversación, una risa, una partida de Roblox
+        o esos momentos sencillos en los que uno se olvida
+        del tiempo porque está disfrutando de la compañía
+        de alguien especial.
+      </p>
+
+      <p>
+        Y, sin darme cuenta, empecé a esperar esos momentos
+        contigo. Empecé a guardar recuerdos, a sonreír
+        cuando hablábamos y a sentir que conocerte había
+        sido una de esas cosas bonitas que no quiero
+        dar por sentado.
+      </p>
+
+      <p>
+        Sé que hay distancia entre nosotros. No puedo estar
+        a tu lado ahora mismo, ni regalarte algo que pueda
+        entregarte en persona. Pero sí puedo regalarte
+        un poquito de mi tiempo, de mi cariño y de todo
+        lo sincero que hay en estas palabras.
+      </p>
+
+      <p>
+        No quiero decirte que ya conozco todo de ti,
+        porque todavía nos quedan muchas cosas por descubrir.
+        Quiero conocer tus sueños, tus ocurrencias, tus días
+        buenos y también esos días en los que necesites
+        que alguien te escuche.
+      </p>
+
+      <p>
+        No sé hasta dónde nos llevará esta historia,
+        pero me gustaría descubrirlo contigo, sin prisas,
+        con sinceridad, confianza y muchas sonrisas.
+      </p>
+
+      <p>
+        Porque, Zizi, aunque llegaste hace poquito,
+        ya tienes un lugar muy bonito en mi corazón. ♡
+      </p>
+
+      <p class="firma">Con todo mi cariño,<br>Angel ♡</p>
+    </div>
+
+    <button class="boton" onclick="irA('recuerdos')">
+      Nuestros recuerdos 🎮
+    </button>
+  </section>
+
+  <!-- 3. FOTOS Y VIDEOS -->
+  <section class="seccion oculto" id="recuerdos">
+    <p class="etiqueta">Pequeños momentos, grandes sonrisas</p>
+    <h2>Nuestra pequeña colección ♡</h2>
+
+    <p class="subtitulo">
+      Tal vez sean recuerdos de partidas para los demás,
+      pero para mí son momentos que tienen algo especial
+      porque los compartí contigo.
+    </p>
+
+    <div class="galeria">
+
+      <!-- RECUERDO 1: cambia foto1.jpg por tu archivo -->
+      <article class="recuerdo">
+        <img src="foto 1.jpeg"
+             alt="Primer recuerdo juntos en Roblox"
+             loading="lazy">
+        <p class="pie">Un momento contigo que me gusta recordar ♡</p>
+      </article>
+
+      <!-- RECUERDO 2: cambia video1.mp4 por tu archivo -->
+      <article class="recuerdo">
+        <video controls playsinline preload="metadata"
+               aria-label="Video de un recuerdo jugando juntos">
+          <source src="video 1.mp4" type="video/mp4">
+          Tu navegador no puede reproducir este video.
+        </video>
+        <p class="pie">Una de esas partidas que se quedan conmigo 🎮</p>
+      </article>
+
+      <!-- RECUERDO 3 -->
+      <article class="recuerdo">
+        <img src="foto 2.jpeg"
+             alt="Otro recuerdo especial"
+             loading="lazy">
+        <p class="pie">Qué bonito fue coincidir contigo 🌷</p>
+      </article>
+
+      <!-- RECUERDO 4: puedes poner otro video -->
+      <article class="recuerdo">
+        <video controls playsinline preload="metadata"
+               aria-label="Otro video de nuestros momentos">
+          <source src="video 2.mp4" type="video/mp4">
+          Tu navegador no puede reproducir este video.
+        </video>
+        <p class="pie">Ojalá nos queden muchas aventuras más ♡</p>
+      </article>
+
+    </div>
+
+    <div class="nota">
+      <p>
+        Si pudiera guardar cada risa y cada momento bonito
+        en un frasquito, lo haría. No porque quiera que
+        el tiempo se detenga, sino porque me gustaría
+        poder recordar siempre cómo empezó todo esto.
+      </p>
+    </div>
+
+    <button class="boton" onclick="irA('declaracion')">
+      Hay algo más que quiero decirte 💌
+    </button>
+  </section>
+
+  <!-- 4. DECLARACIÓN -->
+  <section class="seccion oculto" id="declaracion">
+    <div class="flor">💗</div>
+    <p class="etiqueta">Esta parte es la más importante</p>
+    <h1>Zizi...</h1>
+
+    <div class="carta">
+      <p>
+        Quiero decirte algo que llevo dentro y que ya no
+        quiero dejar solamente en mis pensamientos:
+        <strong>me gustas, Zizi.</strong>
+      </p>
+
+      <p>
+        Me gustas por lo que he podido conocer de ti,
+        por cómo me siento cuando compartimos nuestro tiempo
+        y por la ilusión que me hace pensar en todo lo que
+        todavía podríamos descubrir juntos.
+      </p>
+
+      <p>
+        No necesito que la distancia desaparezca de un día
+        para otro ni quiero prometerte una historia perfecta.
+        Prefiero ofrecerte algo real: mis ganas de conocerte
+        más, de cuidarnos mutuamente, de reír juntos y de
+        construir algo bonito si los dos lo queremos.
+      </p>
+
+      <h2>
+        ¿Te gustaría que intentáramos algo más
+        que una amistad? 💕
+      </h2>
+
+      <p>
+        No tienes que decir que sí por hacerme feliz.
+        Lo que sientes también importa, y quiero que
+        puedas responder con el corazón, con libertad
+        y sin sentir ninguna presión.
+      </p>
+
+      <div class="opciones">
+        <button class="boton" onclick="respuestaSi()">
+          Sí, quiero intentarlo contigo 💗
+        </button>
+
+        <button class="boton secundario" onclick="respuestaTiempo()">
+          Quiero pensarlo con calma 🌷
+        </button>
+
+        <button class="boton secundario" onclick="respuestaNo()">
+          Te quiero, pero como amigo ♡
+        </button>
+      </div>
+
+      <div class="respuesta" id="respuesta"
+           aria-live="polite"></div>
+    </div>
+
+    <p style="margin-top:28px">
+      Gracias por llegar a mi vida, Zizi. ♡
+    </p>
+  </section>
+
+  <footer>
+    Hecho con mucho cariño por Angel,<br>
+    especialmente para Zizi. 🌸<br>
+    <span>Una pequeña página, un sentimiento sincero.</span>
+  </footer>
+
+  <script>
+    const audio = document.getElementById("musica");
+    const botonMusica = document.getElementById("botonMusica");
+    audio.volume = 0.15;
+
+    async function alternarMusica() {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          botonMusica.textContent = "♫ Pausar música";
+          botonMusica.setAttribute("aria-pressed", "true");
+        } catch (error) {
+          botonMusica.textContent = "No se pudo reproducir ♪";
+        }
+      } else {
+        audio.pause();
+        botonMusica.textContent = "♫ Activar música";
+        botonMusica.setAttribute("aria-pressed", "false");
+      }
+    }
+
+    function irA(id) {
+      const destino = document.getElementById(id);
+      destino.classList.remove("oculto");
+
+      setTimeout(() => {
+        destino.scrollIntoView({
+          behavior: window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches ? "auto" : "smooth",
+          block: "start"
+        });
+      }, 50);
+
+      lanzarCorazones(5);
+    }
+
+    function ponerRespuesta(texto, celebrar = false) {
+      document.getElementById("respuesta").textContent = texto;
+
+      if (celebrar) {
+        lanzarCorazones(35);
+      }
+    }
+
+    function respuestaSi() {
+      ponerRespuesta(
+        "Zizi, no sabes la sonrisa que me sacaría leer eso. " +
+        "Gracias por darme la oportunidad de conocernos " +
+        "de una forma más bonita. Vamos paso a paso, " +
+        "con cariño, sinceridad y muchas aventuras juntos. ♡",
+        true
+      );
+    }
+
+    function respuestaTiempo() {
+      ponerRespuesta(
+        "Está bien, Zizi. Tómate todo el tiempo que necesites. " +
+        "No quiero apresurarte; prefiero que lo que decidamos " +
+        "nazca de verdad de nuestros corazones. Gracias por " +
+        "leer mi cartita. ♡"
+      );
+    }
+
+    function respuestaNo() {
+      ponerRespuesta(
+        "Gracias por ser sincera conmigo, Zizi. " +
+        "Lo que siento es real, pero también respeto lo que " +
+        "sientes tú. Me alegra haberte conocido y deseo " +
+        "que siempre podamos tratarnos con cariño. ♡"
+      );
+    }
+
+    function lanzarCorazones(cantidad) {
+      const reducido = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (reducido) return;
+
+      const simbolos = ["♡", "♥", "🌸", "💕", "✧"];
+
+      for (let i = 0; i < cantidad; i++) {
+        setTimeout(() => {
+          const elemento = document.createElement("span");
+          elemento.className = "corazon-flotante";
+          elemento.textContent =
+            simbolos[Math.floor(Math.random() * simbolos.length)];
+
+          elemento.style.left = Math.random() * 95 + "vw";
+          elemento.style.fontSize =
+            (16 + Math.random() * 20) + "px";
+          elemento.style.color =
+            ["#e88baa", "#c98ab9", "#d87599"][
+              Math.floor(Math.random() * 3)
+            ];
+
+          document.body.appendChild(elemento);
+          elemento.addEventListener("animationend", () => {
+            elemento.remove();
+          }, { once: true });
+
+          setTimeout(() => elemento.remove(), 7000);
+        }, i * 90);
+      }
+    }
+    
+const flores = ["🌸", "🌷", "🌺", "🌼", "💮"];
+
+function crearFlor() {
+  const flor = document.createElement("span");
+  flor.className = "flor";
+  flor.textContent = flores[
+    Math.floor(Math.random() * flores.length)
+  ];
+
+  flor.style.left = Math.random() * 100 + "vw";
+  flor.style.fontSize = (10 + Math.random() * 10) + "px";
+  flor.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+  document.body.appendChild(flor);
+
+  setTimeout(() => {
+    flor.remove();
+  }, 12000);
+}
+
+// Una florecita nueva cada 180 milisegundos,
+// mientras la página permanezca abierta.
+setInterval(crearFlor, 180);
+
+  </script>
+
+</body>
+</html>
